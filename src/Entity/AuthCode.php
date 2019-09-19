@@ -1,15 +1,29 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agaidt
- * Date: 18.09.19
- * Time: 15:24
- */
 
 namespace App\Entity;
 
+use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
+use Doctrine\ORM\Mapping as ORM;
 
-class AuthCode
+/**
+ * @ORM\Entity
+ */
+class AuthCode extends BaseAuthCode
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column (type = "integer")
+     * @ORM\GeneratedValue (strategy = "AUTO")
+     */
+protected $id;
+    /**
+     * @ORM\ManyToOne (targetEntity = "Client")
+     * @ORM\JoinColumn (nullable = false)
+     */
+protected $client;
+    /**
+     * @ORM\ManyToOne (targetEntity = "App\Entity\User")
+     */
+protected $user;
 
 }

@@ -1,15 +1,30 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agaidt
- * Date: 18.09.19
- * Time: 15:18
- */
 
 namespace App\Entity;
 
+use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
+use Doctrine\ORM\Mapping as ORM;
 
-class AccessToken
+/**
+ * @ORM\Entity
+ */
+class AccessToken extends BaseAccessToken
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column (type = "integer")
+     * @ORM\GeneratedValue (strategy = "AUTO")
+     */
+    protected $id;
 
+    /**
+     * @ORM\ManyToOne (targetEntity = "Client")
+     * @ORM\JoinColumn (nullable = false)
+     */
+    protected $client;
+
+    /**
+     * @ORM\ManyToOne (targetEntity = "App\Entity\User")
+     */
+    protected $user;
 }
