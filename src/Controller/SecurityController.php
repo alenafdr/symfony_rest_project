@@ -1,14 +1,14 @@
 <?php
 namespace App\Controller;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations as FOSRest;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\OAuthServerBundle\Model\ClientManagerInterface;
-class SecurityController extends FOSRestController
+class SecurityController extends AbstractFOSRestController
 {
-    private $client_manager;
+   /* private $client_manager;
     public function __construct(ClientManagerInterface $client_manager)
     {
         $this->client_manager = $client_manager;
@@ -19,7 +19,7 @@ class SecurityController extends FOSRestController
      *
      * @return Response
      */
-    public function AuthenticationAction(Request $request)
+    /*public function AuthenticationAction(Request $request)
     {
         $data = json_decode($request->getContent(), true);
         if (empty($data['redirect-uri']) || empty($data['grant-type'])) {
@@ -34,5 +34,5 @@ class SecurityController extends FOSRestController
             'client_id' => $client->getPublicId(), 'client_secret' => $client->getSecret()
         ];
         return $this->handleView($this->view($rows));
-    }
+    }*/
 }
