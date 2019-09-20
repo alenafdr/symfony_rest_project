@@ -30,9 +30,24 @@ class MovieController extends AbstractFOSRestController
     }
 
     /**
+     * Movie by id.
+     * @Rest\Get("/movie/{id}")
+     *
+     * @param $id
+     * @return Response
+     */
+    public function getMovieById($id)
+    {
+        $repository = $this->getDoctrine()->getRepository(Movie::class);
+        $movie = $repository->find($id);
+        return $this->handleView($this->view($movie));
+    }
+
+    /**
      *CreateMovie.
      * @Rest\Post("/movie")
      *
+     * @param Request $request
      * @return Response
      */
     public function postMovieAction(Request $request)
